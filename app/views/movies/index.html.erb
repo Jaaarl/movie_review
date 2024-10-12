@@ -1,2 +1,28 @@
-<h1>Movies#index</h1>
-<p>Find me in app/views/movies/index.html.erb</p>
+<h1>Movies</h1>
+<% if user_signed_in? %>
+<%= link_to 'new movies', new_movie_path, class: "btn btn-success" %>
+<% end %>
+<div class="container">
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title"><%= movie.title %></h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= movie.blurb %></p>
+            <p class="card-text">
+              <strong>Released:</strong> <%= movie.released.strftime("%B %d, %Y") %><br>
+              <strong>Country of Origin:</strong> <%= movie.country_of_origin %><br>
+              <strong>Showing:</strong> <%= movie.showing_start.strftime("%B %d, %Y %I:%M %p") %> - <%= movie.showing_end.strftime("%B %d, %Y %I:%M %p") %>
+            </p>
+          </div>
+          <div class="card-footer text-muted">
+            Added on <%= movie.created_at.strftime("%B %d, %Y") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

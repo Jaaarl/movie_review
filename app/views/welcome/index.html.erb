@@ -2,6 +2,8 @@
 <% if user_signed_in? %>
   <h2>Welcome, <%= current_user.username %> </h2>
   <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+  <%= link_to 'Go to movies', movies_path, class: "btn btn-success" %>
+
 <% else %>
   <%= link_to 'Sign in', new_user_session_path %>
 <% end %>

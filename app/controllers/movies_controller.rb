@@ -13,8 +13,9 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
+    @movie.user = current_user
     if @movie.save
-      redirect_to @movie, notice: 'Movie was successfully created.'
+      redirect_to movies_path
     else
       render :new
     end
