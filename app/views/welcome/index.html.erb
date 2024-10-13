@@ -1,9 +1,10 @@
 <h1>Welcome To Movie Review</h1>
 <% if user_signed_in? %>
-  <h2>Welcome, <%= current_user.username %> </h2>
-  <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
-  <%= link_to 'Go to movies', movies_path, class: "btn btn-success" %>
-
+  <h2>Welcome back, <%= current_user.username %> </h2>
 <% else %>
-  <%= link_to 'Sign in', new_user_session_path %>
+  <p>You are not signed in. 
+    <%= link_to 'Sign In', new_user_session_path, class: 'link-underline-light' %>
+    or
+    <%= link_to 'Create an Account', new_user_registration_path, class: 'link-underline-light' %>
+  </p>
 <% end %>
