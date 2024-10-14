@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_12_083439) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_14_013404) do
+  create_table "categories", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movie_category_ships", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_movie_category_ships_on_category_id"
+    t.index ["movie_id"], name: "index_movie_category_ships_on_movie_id"
+  end
+
   create_table "movies", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "blurb"
