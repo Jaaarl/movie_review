@@ -1,2 +1,29 @@
-<h1>Movies#show</h1>
-<p>Find me in app/views/movies/show.html.erb</p>
+<div class="container">
+  <div class="d-flex justify-content-between mt-3">
+    <div>
+      <h1><%= @movie.title %></h1>
+      <h5><%= @movie.released.strftime("%B %d, %Y") %></h5>
+    </div>
+    <div class="d-flex gap-3">
+      <div>
+        <h4>Rating</h4>
+        <h4>number</h4>
+      </div>
+      <div>
+        <h4>Your Rating</h4>
+        <h4>number</h4>
+      </div>
+    </div>
+  </div>
+  <p class="text-muted">
+    <%= @movie.blurb %>
+  </p>
+  <p>
+    <strong>Genre:</strong> <%= @movie.categories.pluck(:name).join(', ') %> <br>
+    <strong>Country of Origin:</strong> <%= @movie.country_of_origin %><br>
+    <strong>Showing:</strong> <%= @movie.showing_start.strftime("%B %d, %Y %I:%M %p") %>
+    - <%= @movie.showing_end.strftime("%B %d, %Y %I:%M %p") %>
+  </p>
+  <div style="border-bottom: 2px solid black; width: 100%;"></div>
+  <h1>Reviews</h1>
+</div>

@@ -24,6 +24,7 @@
           <div class="card-footer text-muted">
             Added on <%= movie.created_at.strftime("%B %d, %Y") %>
           </div>
+          <%= link_to 'View Movie', movie_path(movie), class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
