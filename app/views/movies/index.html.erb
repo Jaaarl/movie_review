@@ -17,7 +17,8 @@
               <strong>Genre:</strong> <%= movie.categories.pluck(:name).join(', ') %> <br>
               <strong>Released:</strong> <%= movie.released.strftime("%B %d, %Y") %><br>
               <strong>Country of Origin:</strong> <%= movie.country_of_origin %><br>
-              <strong>Showing:</strong> <%= movie.showing_start.strftime("%B %d, %Y %I:%M %p") %> - <%= movie.showing_end.strftime("%B %d, %Y %I:%M %p") %>
+              <strong>Showing:</strong> <%= movie.showing_start.strftime("%B %d, %Y %I:%M %p") %>
+              - <%= movie.showing_end.strftime("%B %d, %Y %I:%M %p") %>
             </p>
           </div>
           <div class="card-footer text-muted">
@@ -27,4 +28,5 @@
       </div>
     <% end %>
   </div>
+  <%= paginate @movies, theme: 'bootstrap-5' %>
 </div>

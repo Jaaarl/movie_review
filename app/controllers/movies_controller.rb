@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.includes(:categories).all
+    @movies = Movie.includes(:categories).page(params[:page]).per(3)
   end
 
   def show; end
