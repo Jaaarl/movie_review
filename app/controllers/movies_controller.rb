@@ -1,11 +1,11 @@
 class MoviesController < ApplicationController
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+
   def index
     @movies = Movie.includes(:categories).all
   end
 
-  def show
-    @movie = Movie.find(params[:id])
-  end
+  def show; end
 
   def new
     @movie = Movie.new
@@ -21,12 +21,9 @@ class MoviesController < ApplicationController
     end
   end
 
-  def edit
-    @movie = Movie.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
       redirect_to @movie, notice: 'Movie was successfully updated.'
     else
@@ -35,12 +32,15 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:id])
     @movie.destroy
     redirect_to movies_url, notice: 'Movie was successfully destroyed.'
   end
 
   private
+
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
 
   def movie_params
     params.require(:movie).permit(:title, :blurb, :released, :country_of_origin, :showing_start, :showing_end, :user_id, category_ids: [])
