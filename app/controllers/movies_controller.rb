@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.includes(:categories).all
   end
 
   def show
@@ -43,6 +43,6 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :blurb, :released, :country_of_origin, :showing_start, :showing_end, :user_id)
+    params.require(:movie).permit(:title, :blurb, :released, :country_of_origin, :showing_start, :showing_end, :user_id, category_ids: [])
   end
 end

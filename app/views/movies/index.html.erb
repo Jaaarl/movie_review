@@ -12,7 +12,9 @@
           </div>
           <div class="card-body">
             <p class="card-text"><%= movie.blurb %></p>
+
             <p class="card-text">
+              <strong>Genre:</strong> <%= movie.categories.pluck(:name).join(', ') %> <br>
               <strong>Released:</strong> <%= movie.released.strftime("%B %d, %Y") %><br>
               <strong>Country of Origin:</strong> <%= movie.country_of_origin %><br>
               <strong>Showing:</strong> <%= movie.showing_start.strftime("%B %d, %Y %I:%M %p") %> - <%= movie.showing_end.strftime("%B %d, %Y %I:%M %p") %>
