@@ -19,13 +19,6 @@ genres = [
   "Animation",
   "Documentary",
   "Musical",
-  "Historical",
-  "Western",
-  "Family",
-  "Superhero",
-  "Biographical",
-  "War",
-  "Sport"
 ]
 
 genres.each do |genre|
