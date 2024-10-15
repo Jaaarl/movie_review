@@ -27,7 +27,11 @@
   <div style="border-bottom: 2px solid black; width: 100%;"></div>
   <h1>Reviews</h1>
   <% if user_signed_in? %>
-    <%= link_to 'Add Review', new_movie_review_path(@movie) %>
+    <% if @movie.reviews.where(user_id: current_user.id).empty? %>
+      <%= link_to 'Add Review', new_movie_review_path(@movie) %>
+    <% else %>
+      <p>You have already reviewed this movie.</p>
+    <% end %>
   <% end %>
   <div class="reviews">
     <% @ordered_reviews.each do |review| %>
