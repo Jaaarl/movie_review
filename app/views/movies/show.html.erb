@@ -49,6 +49,7 @@
           </h5>
           <p class="card-text"><%= review.content %> <%= review.rating %><i class="bi bi-star"></i>
           </p>
+          <%= link_to 'edit review', edit_movie_review_path(review)%>
         </div>
       </div>
     <% end %>
