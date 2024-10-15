@@ -30,7 +30,7 @@
     <%= link_to 'Add Review', new_movie_review_path(@movie) %>
   <% end %>
   <div class="reviews">
-    <% @movie.reviews.each do |review| %>
+    <% @ordered_reviews.each do |review| %>
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">

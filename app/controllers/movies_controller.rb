@@ -1,11 +1,14 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie, only: [:edit, :update, :destroy]
 
   def index
     @movies = Movie.includes(:categories).page(params[:page]).per(3)
   end
 
-  def show; end
+  def show
+    @movie = Movie.find(params[:id])
+    @ordered_reviews = @movie.reviews.order(rating: :desc)
+  end
 
   def new
     @movie = Movie.new
