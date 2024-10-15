@@ -24,6 +24,9 @@
     <strong>Showing:</strong> <%= @movie.showing_start.strftime("%B %d, %Y %I:%M %p") %>
     - <%= @movie.showing_end.strftime("%B %d, %Y %I:%M %p") %>
   </p>
+  <% if user_signed_in? && @movie.user == current_user %>
+    <%= link_to 'Edit Movie', edit_movie_path(@movie), class: "btn btn-success mb-2" %>
+  <% end %>
   <div style="border-bottom: 2px solid black; width: 100%;"></div>
   <h1>Reviews</h1>
   <% if user_signed_in? %>
@@ -33,6 +36,7 @@
       <p>You have already reviewed this movie.</p>
     <% end %>
   <% end %>
+
   <div class="reviews">
     <% @ordered_reviews.each do |review| %>
       <div class="card mb-3">
