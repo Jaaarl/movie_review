@@ -32,6 +32,13 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @movie = Movie.includes(reviews: :user).find(params[:movie_id])
+    @review = @movie.reviews.find(params[:id])
+    @review.destroy
+    redirect_to @movie, notice: 'Review was successfully deleted.'
+  end
+
   private
 
   def review_params
