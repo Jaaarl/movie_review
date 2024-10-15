@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
   def new
-    @movie = Movie.find(params[:movie_id])
+    @movie = Movie.includes(reviews: :user).find(params[:movie_id])
     @review = @movie.reviews.new
   end
 
   def create
-    @movie = Movie.find(params[:movie_id])
+    @movie = Movie.includes(reviews: :user).find(params[:movie_id])
     @review = @movie.reviews.new(review_params)
     @review.user = current_user
 
