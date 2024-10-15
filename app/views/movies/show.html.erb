@@ -26,6 +26,7 @@
   </p>
   <% if user_signed_in? && @movie.user == current_user %>
     <%= link_to 'Edit Movie', edit_movie_path(@movie), class: "btn btn-success mb-2" %>
+    <%= button_to 'Delete Movie', movie_path(@movie),method: :delete, class: "btn btn-danger mb-2" %>
   <% end %>
   <div style="border-bottom: 2px solid black; width: 100%;"></div>
   <h1>Reviews</h1>
