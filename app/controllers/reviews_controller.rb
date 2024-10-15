@@ -16,6 +16,22 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @movie = Movie.includes(reviews: :user).find(params[:movie_id])
+    @review = @movie.reviews.find(params[:id])
+  end
+
+  def update
+    @movie = Movie.includes(reviews: :user).find(params[:movie_id])
+    @review = @movie.reviews.find(params[:id])
+  
+    if @review.update(review_params)
+      redirect_to @movie, notice: 'Review was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def review_params
