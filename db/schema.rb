@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_14_013404) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_15_021111) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -39,6 +39,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_14_013404) do
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
+  create_table "reviews", charset: "utf8mb4", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_reviews_on_movie_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -54,4 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_14_013404) do
   end
 
   add_foreign_key "movies", "users"
+  add_foreign_key "reviews", "movies"
+  add_foreign_key "reviews", "users"
 end

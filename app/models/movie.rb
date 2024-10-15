@@ -3,4 +3,5 @@ class Movie < ApplicationRecord
 
   has_many :movie_category_ships
   has_many :categories, through: :movie_category_ships
+  has_many :reviews
 end
