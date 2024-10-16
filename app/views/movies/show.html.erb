@@ -9,10 +9,12 @@
         <h4>Average Rating</h4>
         <h4 class="text-center"><%= average_rating(@movie) %> <i class="bi bi-star"></i></h4>
       </div>
-      <div>
-        <h4>Your Rating</h4>
-        <h4 class="text-center"><%= your_rating(@movie) %><i class="bi bi-star"></i></h4>
-      </div>
+      <% if user_signed_in?%>
+        <div>
+          <h4>Your Rating</h4>
+          <h4 class="text-center"><%= your_rating(@movie) %><i class="bi bi-star"></i></h4>
+        </div>
+      <% end%> 
     </div>
   </div>
   <p class="text-muted">
