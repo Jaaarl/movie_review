@@ -11,7 +11,7 @@
       </div>
       <div>
         <h4>Your Rating</h4>
-        <h4 class="text-center"><%= your_rating(@movie)%><i class="bi bi-star"></i></h4>
+        <h4 class="text-center"><%= your_rating(@movie) %><i class="bi bi-star"></i></h4>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
   </p>
   <% if user_signed_in? && @movie.user == current_user %>
     <%= link_to 'Edit Movie', edit_movie_path(@movie), class: "btn btn-success mb-2" %>
-    <%= button_to 'Delete Movie', movie_path(@movie),method: :delete, class: "btn btn-danger mb-2" %>
+    <%= button_to 'Delete Movie', movie_path(@movie), method: :delete, class: "btn btn-danger mb-2" %>
   <% end %>
   <div style="border-bottom: 2px solid black; width: 100%;"></div>
   <h1>Reviews</h1>
@@ -50,10 +50,10 @@
           </h5>
           <p class="card-text"><%= review.content %> <%= review.rating %><i class="bi bi-star"></i>
           </p>
-          <%  if current_user == review.user%>
-            <%= link_to 'Edit Review', edit_movie_review_path(review), class: "btn btn-success mb-2" %>
-            <%= button_to 'Delete Review', movie_review_path(review),method: :delete, class: "btn btn-danger mb-2" %>
-          <% end%>
+          <% if current_user == review.user %>
+            <%= link_to 'Edit Review', edit_movie_review_path(movie_id: @movie.id, id: review.id), class: "btn btn-success mb-2" %>
+            <%= button_to 'Delete Review', movie_review_path(movie_id: @movie.id, id: review.id), method: :delete, class: "btn btn-danger mb-2" %>
+          <% end %>
         </div>
       </div>
     <% end %>
