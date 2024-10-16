@@ -12,6 +12,11 @@
 
   <body>
     <%= render 'layouts/shared/navbar' %> 
+    <% flash.each do |key, message| %>
+      <div class="alert alert-<%= key == 'notice' ? 'info' : 'danger' %>" role="alert">
+        <%= message %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
