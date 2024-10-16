@@ -1,4 +1,14 @@
 <h1>Movies</h1>
+<%= form_with url: movies_path, method: :get, local: true do %>
+  <div>
+    <%= label_tag :category, 'Category' %>
+    <%= select_tag :category, options_for_select(@categories.map { |category| [category.name, category.id] }), include_blank: true %>
+  </div>
+
+  <div>
+    <%= submit_tag 'Filter' %>
+  </div>
+<% end %>
 <% if user_signed_in? %>
   <%= link_to 'Add Movie', new_movie_path, class: "btn btn-success" %>
 <% end %>
