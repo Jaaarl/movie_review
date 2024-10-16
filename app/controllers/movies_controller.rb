@@ -8,8 +8,8 @@ class MoviesController < ApplicationController
     if params[:category].present?
       @movies = @movies.filter_by_category(params[:category])
     end
-
     @movies = @movies.page(params[:page]).per(3)
+    session[:current_page] = params[:page] || 1
   end
 
   def show
@@ -35,7 +35,7 @@ class MoviesController < ApplicationController
 
   def update
     if @movie.update(movie_params)
-      redirect_to @movie, notice: 'Movie was successfully updated.'
+      redirect_to movies_path(page: session[:current_page] || 1), notice: "Movie was successfully updated."
     else
       render :edit
     end
