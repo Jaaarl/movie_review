@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @ordered_reviews = @movie.reviews.order(rating: :desc)
+    @movie.update(average_rating: average_rating(@movie))
   end
 
   def new
@@ -48,11 +49,19 @@ class MoviesController < ApplicationController
 
   private
 
+  def average_rating(movie)
+    ratings = movie.reviews.map(&:rating).compact
+    return "0.0" if ratings.empty?
+
+    total = ratings.sum
+    total / ratings.size.to_f
+  end
+  
   def set_movie
     @movie = Movie.find(params[:id])
   end
 
   def movie_params
-    params.require(:movie).permit(:title, :blurb, :released, :country_of_origin, :showing_start, :showing_end, :user_id, category_ids: [])
+    params.require(:movie).permit(:title, :blurb, :released, :country_of_origin, :showing_start, :showing_end, :average_rating, :user_id, category_ids: [])
   end
 end

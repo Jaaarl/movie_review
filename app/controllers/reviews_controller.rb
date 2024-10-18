@@ -24,7 +24,6 @@ class ReviewsController < ApplicationController
   def update
     @movie = Movie.includes(reviews: :user).find(params[:movie_id])
     @review = @movie.reviews.find(params[:id])
-  
     if @review.update(review_params)
       redirect_to @movie, notice: 'Review was successfully updated.'
     else

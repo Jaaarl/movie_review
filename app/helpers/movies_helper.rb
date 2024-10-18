@@ -8,16 +8,11 @@ module MoviesHelper
   end
 
   def average_rating(movie)
-    arr = movie.reviews.map(&:rating)
-    ave = 0.0
-    if arr == []
-      0.00
-    else
-      arr.each do |num|
-        ave = ave + num
-      end
-      ave = ave / arr.size
-    end
-    ave
+    ratings = movie.reviews.map(&:rating).compact # Remove nil values
+    return 0.0 if ratings.empty? # Return 0.0 if there are no ratings
+
+    total = ratings.sum
+    average = total / ratings.size.to_f # Ensure floating-point division
+    average
   end
 end
