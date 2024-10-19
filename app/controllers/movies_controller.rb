@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
   def index
     @categories = Category.all
     @movies = Movie.includes(:categories, :reviews)
-
+    @hot = Movie.includes(:categories, :reviews).order(average_rating: :desc).limit(3)
     if params[:category].present?
       @movies = @movies.filter_by_category(params[:category])
     end

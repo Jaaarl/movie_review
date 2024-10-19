@@ -12,13 +12,19 @@
 <% if user_signed_in? %>
   <%= link_to 'Add Movie', new_movie_path, class: "btn btn-success" %>
 <% end %>
+<% hot_movie = @hot.map(&:title) %>
 <div class="container">
   <div class="row">
     <% @movies.each do |movie| %>
       <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-header">
-            <h5 class="card-title"><%= movie.title %></h5>
+            <h5 class="card-title">
+              <% if hot_movie.include?(movie.title) %>
+                <i class="bi bi-fire"></i>
+              <% end %>
+              <%= movie.title %>
+            </h5>
           </div>
           <div class="card-body">
             <p class="card-text"><%= movie.blurb %></p>
