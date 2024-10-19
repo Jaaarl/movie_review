@@ -8,11 +8,11 @@ module MoviesHelper
   end
 
   def average_rating(movie)
-    ratings = movie.reviews.map(&:rating).compact # Remove nil values
-    return 0.0 if ratings.empty? # Return 0.0 if there are no ratings
+    ratings = movie.reviews.map(&:rating).compact
+    return 0.0 if ratings.empty?
 
     total = ratings.sum
-    average = total / ratings.size.to_f # Ensure floating-point division
+    average = total / ratings.size.to_f
     average
   end
 end
