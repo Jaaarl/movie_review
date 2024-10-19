@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
     if params[:category].present?
       @movies = @movies.filter_by_category(params[:category])
     end
-    @movies = @movies.page(params[:page]).per(6)
+    @movies = @movies.order(average_rating: :desc).page(params[:page]).per(6)
     session[:current_page] = params[:page] || 1
   end
 
