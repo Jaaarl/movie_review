@@ -1,6 +1,8 @@
 class Movie < ApplicationRecord
   default_scope { where(deleted_at: nil) }
   scope :filter_by_category, ->(categories) { where(categories: {id: categories} ) if categories.present? }
+  
+  validates :title, uniqueness: true
 
   belongs_to :user
 

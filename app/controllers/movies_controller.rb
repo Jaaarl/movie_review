@@ -28,6 +28,7 @@ class MoviesController < ApplicationController
     if @movie.save
       redirect_to movies_path, notice: 'Movie was added.'
     else
+      flash[:alert] = @movie.errors.full_messages.to_sentence
       render :new
     end
   end
