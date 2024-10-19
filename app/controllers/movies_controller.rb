@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
 
   def index
     @categories = Category.all
-    @movies = Movie.includes(:categories)
+    @movies = Movie.includes(:categories, :reviews)
 
     if params[:category].present?
       @movies = @movies.filter_by_category(params[:category])
