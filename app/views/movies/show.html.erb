@@ -34,7 +34,7 @@
   <h1>Reviews</h1>
   <% if user_signed_in? %>
     <% if @movie.reviews.where(user_id: current_user.id).empty? %>
-      <%= link_to 'Add Review', new_movie_review_path(@movie) %>
+      <%= link_to 'Add Review', new_movie_review_path(movie_permalink: @movie.permalink) %>
     <% else %>
       <p>You have already reviewed this movie.</p>
     <% end %>
@@ -53,8 +53,8 @@
           <p class="card-text"><%= review.content %> <%= review.rating %><i class="bi bi-star"></i>
           </p>
           <% if current_user == review.user %>
-            <%= link_to 'Edit Review', edit_movie_review_path(permalink: @movie.permalink, id: review.id), class: "btn btn-success mb-2" %>
-            <%= button_to 'Delete Review', movie_review_path(permalink: @movie.permalink, id: review.id), method: :delete, class: "btn btn-danger mb-2" %>
+            <%= link_to 'Edit Review', edit_movie_review_path(movie_permalink: @movie.permalink, id: review.id), class: "btn btn-success mb-2" %>
+            <%= button_to 'Delete Review', movie_review_path(movie_permalink: @movie.permalink, id: review.id), method: :delete, class: "btn btn-danger mb-2" %>
           <% end %>
         </div>
       </div>
