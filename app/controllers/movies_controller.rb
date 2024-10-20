@@ -25,6 +25,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     @movie.user = current_user
+    @movie.permalink = SecureRandom.alphanumeric(7)
     if @movie.save
       redirect_to movies_path, notice: 'Movie was added.'
     else
