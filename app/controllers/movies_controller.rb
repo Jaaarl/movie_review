@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find_by(permalink: params[:permalink])
     @ordered_reviews = @movie.reviews.order(rating: :desc)
     @movie.update(average_rating: average_rating(@movie))
   end
@@ -59,8 +59,8 @@ class MoviesController < ApplicationController
   end
   
   def set_movie
-    @movie = Movie.find(params[:id])
-  end
+    @movie = Movie.find_by(permalink: params[:permalink])
+  end 
 
   def movie_params
     params.require(:movie).permit(:title, :blurb, :released, :country_of_origin, :showing_start, :showing_end, :average_rating, :user_id, category_ids: [])
