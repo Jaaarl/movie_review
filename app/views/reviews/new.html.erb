@@ -1,1 +1,24 @@
-<%= render "form" %>
+<%= form_with(model: [@movie, @review],url: movie_reviews_path(@movie.permalink), local: true) do |form| %>
+  <h1>Add Review for <%= @movie.title %></h1>
+
+  <div class="form-group">
+    <%= form.label :content, class: 'form-label' %>
+    <%= form.text_area :content, rows: 3, class: 'form-control', placeholder: 'Enter your content here' %>
+  </div>
+  <% if action_name == 'edit' %>
+    <div>
+      <%= form.label :rating %>
+      <%= form.object.rating %>
+      <i class="bi bi-star"></i>
+    </div>
+  <% else %>
+    <%= form.label :rating %>
+    <%= form.select :rating, options_for_select((1..5).to_a) %>
+    <i class="bi bi-star"></i>
+  <% end %>
+  <div class="my-2">
+    <%= form.submit 'Submit Review', class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Movie', movie_path(@movie.permalink), class: 'btn btn-primary' %>
