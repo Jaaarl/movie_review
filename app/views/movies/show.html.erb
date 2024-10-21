@@ -50,7 +50,11 @@
               <%= review.created_at.strftime("%B %d, %Y") %>
             </small>
           </h5>
-          <p class="card-text"><%= review.content %> <%= review.rating %><i class="bi bi-star"></i>
+          <p class="card-text">
+            <div class = "h6 text-justify">
+              <%= review.rating %><i class="bi bi-star"></i>
+            </div>
+            <%= review.content %> 
           </p>
           <% if current_user == review.user %>
             <%= link_to 'Edit Review', edit_movie_review_path(movie_permalink: @movie.permalink, id: review.id), class: "btn btn-success mb-2" %>
