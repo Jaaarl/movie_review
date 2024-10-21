@@ -1,1 +1,1 @@
-<%= render partial: "form", locals: { movie: @movie, review: @review }%>
+<%= render partial: "form", locals: { movie: @movie, review: @review, custom_url: movie_review_path(@movie.permalink)}%>
