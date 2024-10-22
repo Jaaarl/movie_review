@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 Category.destroy_all
 Movie.destroy_all
+MovieCategoryShip.destroy_all
 genres = [
   "Action",
   "Adventure",
