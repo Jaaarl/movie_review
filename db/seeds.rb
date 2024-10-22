@@ -30,6 +30,21 @@ end
 def random_permalink(length = 7)
   (0...length).map { (65 + rand(26)).chr }.join + rand(1000..9999).to_s # Random letters and numbers
 end
+
+def average_rating(movie)
+  ratings = movie.reviews.map(&:rating).compact
+  return 0.0 if ratings.empty?
+
+  total = ratings.sum
+  average = total / ratings.size.to_f
+  average
+end
+User.create!(
+  email: 'user1@example.com',
+  username: 'user1',
+  password: 'password123',
+  password_confirmation: 'password123'
+)
 10.times do
   Movie.create!(
     title: Faker::Movie.title,
@@ -45,13 +60,18 @@ end
 end
 
 Movie.all.each do |movie|
-  rand(1..5).times do
+  total_rating = 0
+  5.times do
+    random_rating = rand(1..5)
     Review.create!(
       content: Faker::Lorem.paragraph(sentence_count: rand(1..5)),
-      rating: rand(1..5),
+      rating: random_rating,
       user_id: 1,
       movie_id: movie.id
     )
+    total_rating += random_rating
   end
+  movie.average_rating = total_rating/5.0
+  movie.save
 end
 
