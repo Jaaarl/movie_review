@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:edit, :update, :destroy]
+  before_action :set_movie, only: [:edit, :update, :destroy, :show]
 
   def index
     @categories = Category.all
@@ -13,7 +13,6 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find_by(permalink: params[:permalink])
     @ordered_reviews = @movie.reviews.order(rating: :desc)
     @movie.update(average_rating: average_rating(@movie))
   end
