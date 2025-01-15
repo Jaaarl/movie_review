@@ -1,25 +1,27 @@
 <h1>Movies</h1>
-<%= form_with url: movies_path, method: :get, local: true do %>
-  <div>
-    <%= label_tag :category, 'Category' %>
-    <%= select_tag :category, options_for_select(@categories.map { |category| [category.name, category.id] }), include_blank: true %>
+<%= form_with url: movies_path, method: :get, local: true, class: 'mb-3 container' do %>
+  <div class="mb-3">
+    <%= label_tag :category, 'Category', class: 'form-label' %>
+    <%= select_tag :category, options_for_select(@categories.map { |category| [category.name, category.id] }), include_blank: 'All Categories', class: 'form-select' %>
   </div>
 
   <div>
-    <%= submit_tag 'Filter' %>
+    <%= submit_tag 'Filter', class: 'btn btn-primary' %>
   </div>
+
+  <% if user_signed_in? %>
+  <%= link_to 'Add Movie', new_movie_path, class: "btn btn-success mt-3" %>
 <% end %>
-<% if user_signed_in? %>
-  <%= link_to 'Add Movie', new_movie_path, class: "btn btn-success" %>
 <% end %>
+
 <% hot_movie = @hot.map(&:title) %>
-<div class="container">
+<div class="container mt-2">
   <div class="row">
     <% @movies.each do |movie| %>
       <div class="col-md-4 mb-4">
         <div class="card h-100">
           <div class="card-header">
-            <h5 class="card-title">
+            <h5 class="card-title mb-0">
               <% if hot_movie.include?(movie.title) %>
                 <i class="bi bi-fire"></i>
               <% end %>
