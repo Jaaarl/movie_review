@@ -75,3 +75,9 @@ Movie.all.each do |movie|
   movie.save
 end
 
+(1..5).each do |i|
+  MovieCategoryShip.create!(
+    movie_id: i,
+    category_id: i
+  )
+end
