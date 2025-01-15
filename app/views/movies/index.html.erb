@@ -1,5 +1,6 @@
-<h1>Movies</h1>
+
 <%= form_with url: movies_path, method: :get, local: true, class: 'mb-3 container' do %>
+  <h1 class="text-center">Movies</h1>
   <div class="mb-3">
     <%= label_tag :category, 'Category', class: 'form-label' %>
     <%= select_tag :category, options_for_select(@categories.map { |category| [category.name, category.id] }), include_blank: 'All Categories', class: 'form-select' %>
